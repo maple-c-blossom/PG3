@@ -111,7 +111,7 @@ public:
         Node<T>* cur = dummy->prev;
         return Remove(cur);
     }
-    void Dump()
+    void AllPrint()
     {
         Node<T>* ptr = dummy->next;
         while (ptr != dummy)
