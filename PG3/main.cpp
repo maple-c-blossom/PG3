@@ -1,10 +1,212 @@
-#include "Cell.h"
+#define _CRTDBG_MAP_ALLOC 
+#include <crtdbg.h>
+#include <cstdlib>
+#include "List.h"
 using namespace std;
+enum Status {
+	Menu = 0,
+	Draw = 1,
+	Insert = 2,
+	Change = 3,
+	Delete = 4,
+};
+enum DrawStatus {
+	AllDraw = 1,
+	SelectDraw = 2
+};
+template <class T>
+void MenuRun(MCB::List<T>& list, int& status)
+{
+	cout << "[—v‘f‚Ì‘€ì]" << endl;
+	cout << "1.—v‘f‚Ì•\Ž¦" << endl;
+	cout << "2.—v‘f‚Ì‘}“ü" << endl;
+	if (!list.Empty())
+	{
+		cout << "3.—v‘f‚Ì•ÒW" << endl;
+		cout << "4.—v‘f‚Ìíœ" << endl;
+	}
+	cout << "-----------------------------------------" << endl;
+	cout << "‘€ì‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢B‘ÎÛŠO‚Ì’l‚Ìê‡I—¹‚µ‚Ü‚·B" << endl;
+	cin >> status;
+};
+template <class T>
+void DrawRun(MCB::List<T>& list, int& status)
+{
+	int selectStatus;
+	int drawStatus = Menu;
+	int select = 2;
+	cout << "[—v‘f‚Ì•\Ž¦]" << endl;
+	cout << "1.—v‘f‚Ìˆê——•\Ž¦" << endl;
+	cout << "2.—v‘f‚Ì‡”Ô‚ðŽw’è‚µ‚Ä—v‘f‚ð•\Ž¦" << endl;
+	cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
+	cin >> drawStatus;
+	switch (drawStatus)
+	{
+	case AllDraw:
+		cout << "[—v‘f‚Ìˆê——•\Ž¦]" << endl;
+		cout << "—v‘fˆê——:{" << endl;
+		list.AllPrint();
+		cout << "}" << endl;
 
+		cout << "—v‘f”:" << list.Size() << endl;
+		cout << "-----------------------------------" << endl;
+		cout << "1.—v‘f‚Ì•\Ž¦‚É–ß‚é" << endl;
+		cout << "2.—v‘f‚Ì‘€ì‚É–ß‚é" << endl;
+		cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
+		
+		cin >> select;
+		switch (select)
+		{
+		case 1:
+			status = Draw;
+			break;
+		case 2:
+			status = Menu;
+			break;
+		default:
+			status = Menu;
+			break;
+		}
+		break;
+	case SelectDraw:
+		cout << "[‡”Ô‚ðŽw’è‚µ‚Ä—v‘f‚ð•\Ž¦]" << endl;
+		
+		cin >> selectStatus;
+		cout << selectStatus << ":" << list.GetNodeAddress(selectStatus)->value << endl;
+		cout << "-----------------------------------" << endl;
+		cout << "1.—v‘f‚Ì•\Ž¦‚É–ß‚é" << endl;
+		cout << "2.—v‘f‚Ì‘€ì‚É–ß‚é" << endl;
+		cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
+		select = 2;
+		cin >> select;
+		switch (select)
+		{
+		case 1:
+			status = Draw;
+			break;
+		case 2:
+			status = Menu;
+			break;
+		default:
+			status = Menu;
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+}
 
+template <class T>
+void InsertRun(MCB::List<T>& list, int& status)
+{
+	cout << "[List‚Ì—v‘f‚Ì‘}“ü]" << endl;
+	int selectPosition = -114514;
+	cout << "—v‘f‚ð’Ç‰Á‚·‚éêŠ‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢BÅŒã”ö‚É’Ç‰Á‚·‚éê‡‚Í‰½‚à“ü—Í‚µ‚È‚¢‚Å‚­‚¾‚³‚¢" << endl;
+	cin >> selectPosition;
+	cout << "’Ç‰Á‚·‚é—v‘f‚Ì’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << endl;
+	int value = 0;
+	cin >> value;
+	if (selectPosition < 0 || selectPosition >= list.Size())
+	{
+		list.PushBack(value);
+		cout << "—v‘f" << value << "‚ª" << list.Size() - 1 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+	}
+	else
+	{
+		list.Add(value, list.GetNodeAddress(selectPosition));
+		cout << "—v‘f" << value << "‚ª" << selectPosition << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+	}
+	status = Menu;
+}
 
+template <class T>
+void ChangeRun(MCB::List<T>& list, int& status)
+{
+	cout << "[—v‘f‚Ì•ÒW]" << "\n" << "•ÒW‚µ‚½‚¢—v‘f‚Ì”Ô†‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢" << endl;
+	int selectPosition = -114514;
+	int value = 0;
+	cin >> selectPosition;
+	if (selectPosition < 0 || selectPosition >= list.Size())
+	{
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½" << endl;
+
+	}
+	else
+	{
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚Ì•ÏX‚·‚é’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << endl;
+		cin >> value;
+		list.GetNodeAddress(selectPosition)->value = value;
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚Ì’l‚ª" << value << "‚É•ÏX‚³‚ê‚Ü‚µ‚½" << endl;
+	}
+	status = Menu;
+}
+template <class T>
+void DeleteRun(MCB::List<T>& list, int& status)
+{
+	cout << "[—v‘f‚Ìíœ]" << "\n" << "íœ‚µ‚½‚¢—v‘f‚Ì”Ô†‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢" << endl;
+	int selectPosition = -114514;
+	int value = 0;
+	cin >> selectPosition;
+	if (selectPosition < 0 || selectPosition >= list.Size())
+	{
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½" << endl;
+
+	}
+	else
+	{
+		value = list.GetNodeAddress(selectPosition)->value;
+		list.Delete(list.GetNodeAddress(selectPosition));
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚Ì’l‚ª" << value << "‚ðíœ‚µ‚Ü‚µ‚½" << endl;
+	}
+	status = Menu;
+}
 int main()
 {
+	
 
+	MCB::List<int> list;
+	int status = Menu;
+	bool breakFlag = false;
+	int selectPosition = -114514;
+	int value;
+	int select = 2;
+	int selectStatus;
+	int drawStatus = Menu;
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    {
+	    while (true)
+	    {
+			
+			switch (status)
+			{
+			case Menu:
+				MenuRun(list,status);
+				break;
+			case Draw:
+				DrawRun(list, status);
+				break;
+			case Insert:
+				InsertRun(list, status);
+				break;
+			case Change:
+				ChangeRun(list,status);
+				break;
+			case Delete:
+				DeleteRun(list,status);
+				status = Menu;
+				break;
+			default:
+				breakFlag = true;
+				break;
+			}
+			if (breakFlag)
+			{
+				break;
+			}
+	    }
+    }
+    _CrtDumpMemoryLeaks();
+    system("pause");
 	return 0;
 }
