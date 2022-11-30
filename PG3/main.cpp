@@ -234,7 +234,7 @@ void DeleteRun(MCB::List<T>& list, int& status)
 }
 int main()
 {
-	//ios::sync_with_stdio(false);
+	ios::sync_with_stdio(false);
 
 	MCB::List<string> list;
 	int status = Menu;
