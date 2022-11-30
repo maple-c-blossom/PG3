@@ -27,7 +27,7 @@ void MenuRun(MCB::List<T>& list, int& status)
 		cout << "4.—v‘f‚Ìíœ" << endl;
 	}
 	cout << "-----------------------------------------" << endl;
-	cout << "‘€ì‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢B‘ÎÛŠO‚Ì’l‚Ìê‡I—¹‚µ‚Ü‚·B" << endl;
+	cout << "‘€ì‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢B" << endl;
 	cin >> status;
 };
 template <class T>
@@ -39,7 +39,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 	cout << "[—v‘f‚Ì•\Ž¦]" << endl;
 	cout << "1.—v‘f‚Ìˆê——•\Ž¦" << endl;
 	cout << "2.—v‘f‚Ì‡”Ô‚ðŽw’è‚µ‚Ä—v‘f‚ð•\Ž¦" << endl;
-	cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
+	//cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
 	cin >> drawStatus;
 	switch (drawStatus)
 	{
@@ -47,13 +47,13 @@ void DrawRun(MCB::List<T>& list, int& status)
 		cout << "[—v‘f‚Ìˆê——•\Ž¦]" << endl;
 		cout << "—v‘fˆê——:{" << endl;
 		list.AllPrint();
-		cout << "}" << endl;
+		cout << "}\n" << endl;
 
 		cout << "—v‘f”:" << list.Size() << endl;
-		cout << "-----------------------------------" << endl;
+		cout << "\n\n-----------------------------------" << endl;
 		cout << "1.—v‘f‚Ì•\Ž¦‚É–ß‚é" << endl;
 		cout << "2.—v‘f‚Ì‘€ì‚É–ß‚é" << endl;
-		cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
+		//cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
 
 		cin >> select;
 		switch (select)
@@ -108,25 +108,25 @@ void InsertRun(MCB::List<T>& list, int& status)
 	cout << "—v‘f‚ð’Ç‰Á‚·‚éêŠ‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢" << endl;
 	cin >> selectPosition;
 	cout << "’Ç‰Á‚·‚é—v‘f‚Ì’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << endl;
-	int value = 0;
+	T value;
 	cin >> value;
 	if (selectPosition - 1 < 0 || selectPosition - 1 >= list.Size())
 	{
 		if (selectPosition - 1 < 0)
 		{
 			list.PushFront(value);
-			cout << "—v‘f" << value << "‚ª" << 0 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+			cout << "—v‘f\"" << value << "\"‚ª" << 0 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
 		}
 		else
 		{
 			list.PushBack(value);
-			cout << "—v‘f" << value << "‚ª" << list.Size() - 1 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+			cout << "—v‘f\"" << value << "\"‚ª" << list.Size() - 1 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½\n";
 		}
 	}
 	else
 	{
 		list.Add(value, list.GetNodeAddress(selectPosition - 1));
-		cout << "—v‘f" << value << "‚ª" << selectPosition << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+		cout << "—v‘f" << value << "‚ª" << selectPosition << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½\n";
 	}
 	status = Menu;
 }
@@ -136,11 +136,11 @@ void ChangeRun(MCB::List<T>& list, int& status)
 {
 	cout << "[—v‘f‚Ì•ÒW]" << "\n" << "•ÒW‚µ‚½‚¢—v‘f‚Ì”Ô†‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢" << endl;
 	int selectPosition = -114514;
-	int value = 0;
+	T value;
 	cin >> selectPosition;
 	if (selectPosition < 0 || selectPosition >= list.Size())
 	{
-		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½" << endl;
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" << endl;
 
 	}
 	else
@@ -148,7 +148,7 @@ void ChangeRun(MCB::List<T>& list, int& status)
 		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚Ì•ÏX‚·‚é’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << endl;
 		cin >> value;
 		list.GetNodeAddress(selectPosition)->value = value;
-		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚Ì’l‚ª" << value << "‚É•ÏX‚³‚ê‚Ü‚µ‚½" << endl;
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚Ì’l‚ª\"" << value << "\"‚É•ÏX‚³‚ê‚Ü‚µ‚½" << endl;
 	}
 	status = Menu;
 }
@@ -157,18 +157,18 @@ void DeleteRun(MCB::List<T>& list, int& status)
 {
 	cout << "[—v‘f‚Ìíœ]" << "\n" << "íœ‚µ‚½‚¢—v‘f‚Ì”Ô†‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢" << endl;
 	int selectPosition = -114514;
-	int value = 0;
+	T value;
 	cin >> selectPosition;
 	if (selectPosition < 0 || selectPosition >= list.Size())
 	{
-		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½" << endl;
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" << endl;
 
 	}
 	else
 	{
 		value = list.GetNodeAddress(selectPosition)->value;
 		list.Delete(list.GetNodeAddress(selectPosition));
-		cout << selectPosition << "”Ô–Ú‚Ì—v‘f‚Ì’l‚ª" << value << "‚ðíœ‚µ‚Ü‚µ‚½" << endl;
+		cout << selectPosition << "”Ô–Ú‚Ì—v‘f\"" << value << "\"‚ðíœ‚µ‚Ü‚µ‚½\n" << endl;
 	}
 	status = Menu;
 }
@@ -176,14 +176,9 @@ int main()
 {
 	ios::sync_with_stdio(false);
 
-	MCB::List<int> list;
+	MCB::List<string> list;
 	int status = Menu;
 	bool breakFlag = false;
-	int selectPosition = -114514;
-	int value;
-	int select = 2;
-	int selectStatus;
-	int drawStatus = Menu;
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	{
 		while (true)

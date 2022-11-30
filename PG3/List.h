@@ -92,9 +92,9 @@ namespace MCB
         {
             if (Empty())
             {
-                cout << "error! List is enpty! Return is inf" << endl;
-                int temp = 0 / 1;
-                return temp;//ゼロ除算でinfをリターンしてerror扱いに
+                cout << "error! List is enpty!" << endl;
+                //int temp = 0 / 1;
+                return dummy->value;//dummy->valueをリターンしてerror扱いに
             }
             T ret = node->value;
             node->prev->next = node->next;
@@ -141,7 +141,7 @@ namespace MCB
             while (ptr != dummy)
             {
 
-                cout << num << ":" << ptr->value << endl;//テンプレートのフォーマット指定子がわからなかったので、ネットから拾ってきた方法で描画
+                cout << num << ":\"" << ptr->value << "\"" << endl;//テンプレートのフォーマット指定子がわからなかったので、ネットから拾ってきた方法で描画
                 ptr = ptr->next;
                 num++;
             }
