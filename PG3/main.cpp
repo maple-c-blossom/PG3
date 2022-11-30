@@ -29,6 +29,11 @@ void MenuRun(MCB::List<T>& list, int& status)
 	cout << "-----------------------------------------" << endl;
 	cout << "操作を選択してください。" << endl;
 	cin >> status;
+	if (cin.fail())
+	{
+		cin.clear();
+	}
+	cin.ignore(1024, '\n');
 };
 template <class T>
 void DrawRun(MCB::List<T>& list, int& status)
@@ -41,6 +46,11 @@ void DrawRun(MCB::List<T>& list, int& status)
 	cout << "2.要素の順番を指定して要素を表示" << endl;
 	//cout << "上記以外.要素の操作へ戻る" << endl;
 	cin >> drawStatus;
+	if (cin.fail())
+	{
+		cin.clear();
+	}
+	cin.ignore(1024, '\n');
 	switch (drawStatus)
 	{
 	case AllDraw:
@@ -56,6 +66,11 @@ void DrawRun(MCB::List<T>& list, int& status)
 		//cout << "上記以外.要素の操作へ戻る" << endl;
 
 		cin >> select;
+		if (cin.fail())
+		{
+			cin.clear();
+		}
+		cin.ignore(1024, '\n');
 		switch (select)
 		{
 		case 1:
@@ -73,6 +88,10 @@ void DrawRun(MCB::List<T>& list, int& status)
 		cout << "[順番を指定して要素を表示]" << endl;
 
 		cin >> selectStatus;
+		if (cin.fail())
+		{
+			cin.clear();
+		}
 		cout << selectStatus << ":" << list.GetNodeAddress(selectStatus)->value << endl;
 		cout << "-----------------------------------" << endl;
 		cout << "1.要素の表示に戻る" << endl;
@@ -80,6 +99,11 @@ void DrawRun(MCB::List<T>& list, int& status)
 		//cout << "上記以外.要素の操作へ戻る" << endl;
 		select = 2;
 		cin >> select;
+		if (cin.fail())
+		{
+			cin.clear();
+		}
+		cin.ignore(1024, '\n');
 		switch (select)
 		{
 		case 1:
@@ -106,11 +130,13 @@ void InsertRun(MCB::List<T>& list, int& status)
 	cout << "[Listの要素の挿入]" << endl;
 	int selectPosition = -114514;
 	string getSelect;
-	cout << "要素を追加する場所を指定してください" << endl;
-	cin.clear();
-	cin.ignore(1024, '\n');
+	cout << "要素を追加する場所を指定してください。最後尾に追加する場合は何も入力しないでください" << endl;
 	getline(cin,getSelect);
-
+	if (cin.fail())
+	{
+		cin.clear();
+	}
+	cin.ignore(1024, '\n');
 	if (getSelect == "\0")
 	{
 		cout << endl;
@@ -124,6 +150,11 @@ void InsertRun(MCB::List<T>& list, int& status)
 	cout << "追加する要素の値を入力してください" << endl;
 	T value;
 	cin >> value;
+	if (cin.fail())
+	{
+		cin.clear();
+	}
+	cin.ignore(1024, '\n');
 	if (selectPosition - 1 < 0 || selectPosition - 1 >= list.Size())
 	{
 		if (selectPosition - 1 < 0)
@@ -152,6 +183,11 @@ void ChangeRun(MCB::List<T>& list, int& status)
 	int selectPosition = -114514;
 	T value;
 	cin >> selectPosition;
+	if (cin.fail())
+	{
+		cin.clear();
+	}
+	cin.ignore(1024, '\n');
 	if (selectPosition < 0 || selectPosition >= list.Size())
 	{
 		cout << selectPosition << "番目の要素が見つかりませんでした\n" << endl;
@@ -161,6 +197,11 @@ void ChangeRun(MCB::List<T>& list, int& status)
 	{
 		cout << selectPosition << "番目の要素の変更する値を入力してください" << endl;
 		cin >> value;
+		if (cin.fail())
+		{
+			cin.clear();
+		}
+		cin.ignore(1024, '\n');
 		list.GetNodeAddress(selectPosition)->value = value;
 		cout << selectPosition << "番目の要素の値が\"" << value << "\"に変更されました" << endl;
 	}
@@ -173,6 +214,11 @@ void DeleteRun(MCB::List<T>& list, int& status)
 	int selectPosition = -114514;
 	T value;
 	cin >> selectPosition;
+	if (cin.fail())
+	{
+		cin.clear();
+	}
+	cin.ignore(1024, '\n');
 	if (selectPosition < 0 || selectPosition >= list.Size())
 	{
 		cout << selectPosition << "番目の要素が見つかりませんでした\n" << endl;
