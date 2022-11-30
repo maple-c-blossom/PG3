@@ -105,8 +105,22 @@ void InsertRun(MCB::List<T>& list, int& status)
 {
 	cout << "[List‚Ì—v‘f‚Ì‘}“ü]" << endl;
 	int selectPosition = -114514;
+	string getSelect;
 	cout << "—v‘f‚ð’Ç‰Á‚·‚éêŠ‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢" << endl;
-	cin >> selectPosition;
+	cin.clear();
+	cin.ignore(1024, '\n');
+	getline(cin,getSelect);
+
+	if (getSelect == "\0")
+	{
+		cout << endl;
+		selectPosition = list.Size() + 10;
+	}
+	else
+	{
+
+		selectPosition = std::stoi(getSelect);
+	}
 	cout << "’Ç‰Á‚·‚é—v‘f‚Ì’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << endl;
 	T value;
 	cin >> value;
@@ -174,7 +188,7 @@ void DeleteRun(MCB::List<T>& list, int& status)
 }
 int main()
 {
-	ios::sync_with_stdio(false);
+	//ios::sync_with_stdio(false);
 
 	MCB::List<string> list;
 	int status = Menu;
