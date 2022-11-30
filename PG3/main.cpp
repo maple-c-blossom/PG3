@@ -44,6 +44,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 	cout << "[—v‘f‚Ì•\Ž¦]" << endl;
 	cout << "1.—v‘f‚Ìˆê——•\Ž¦" << endl;
 	cout << "2.—v‘f‚Ì‡”Ô‚ðŽw’è‚µ‚Ä—v‘f‚ð•\Ž¦" << endl;
+	cout << "9.—v‘f‚Ì‘€ì‚É–ß‚é" << endl;
 	//cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
 	cin >> drawStatus;
 	if (cin.fail())
