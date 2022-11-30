@@ -77,7 +77,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 		cout << "-----------------------------------" << endl;
 		cout << "1.要素の表示に戻る" << endl;
 		cout << "2.要素の操作に戻る" << endl;
-		cout << "上記以外.要素の操作へ戻る" << endl;
+		//cout << "上記以外.要素の操作へ戻る" << endl;
 		select = 2;
 		cin >> select;
 		switch (select)
