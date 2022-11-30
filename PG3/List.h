@@ -56,7 +56,7 @@ namespace MCB
         }
         inline void PushFront(T value)//æ“ª‚É‘}“ü
         {
-            Cell<T>* cur = dummy->next;
+            Cell<T>* cur = dummy;
             Add(value, cur);
         }
         inline void PushBack(T value)//––”ö‚É‘}“ü

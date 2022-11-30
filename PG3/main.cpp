@@ -53,7 +53,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 		cout << "1.—v‘f‚Ì•\¦‚É–ß‚é" << endl;
 		cout << "2.—v‘f‚Ì‘€ì‚É–ß‚é" << endl;
 		cout << "ã‹LˆÈŠO.—v‘f‚Ì‘€ì‚Ö–ß‚é" << endl;
-		
+
 		cin >> select;
 		switch (select)
 		{
@@ -70,7 +70,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 		break;
 	case SelectDraw:
 		cout << "[‡”Ô‚ğw’è‚µ‚Ä—v‘f‚ğ•\¦]" << endl;
-		
+
 		cin >> selectStatus;
 		cout << selectStatus << ":" << list.GetNodeAddress(selectStatus)->value << endl;
 		cout << "-----------------------------------" << endl;
@@ -98,23 +98,33 @@ void DrawRun(MCB::List<T>& list, int& status)
 }
 
 template <class T>
+//selectPositoin - 1‚ÍAddŠÖ”‚Í‘I‘ğ‚³‚ê‚½—v‘f‚ÌŒã‚ë‚É—v‘f‚ğ‘}“ü‚·‚é‚½‚ßA‚»‚Ì‚Ü‚Üˆø”‚É—^‚¦‚é‚Æ1‚Â•\¦‚Æ‚¸‚ê‚ª”­¶‚·‚é‚½‚ßA
+//‚»‚Ì•â³‚Æ‚µ‚Ä‘}“ü
 void InsertRun(MCB::List<T>& list, int& status)
 {
 	cout << "[List‚Ì—v‘f‚Ì‘}“ü]" << endl;
 	int selectPosition = -114514;
-	cout << "—v‘f‚ğ’Ç‰Á‚·‚éêŠ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢BÅŒã”ö‚É’Ç‰Á‚·‚éê‡‚Í‰½‚à“ü—Í‚µ‚È‚¢‚Å‚­‚¾‚³‚¢" << endl;
+	cout << "—v‘f‚ğ’Ç‰Á‚·‚éêŠ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢" << endl;
 	cin >> selectPosition;
 	cout << "’Ç‰Á‚·‚é—v‘f‚Ì’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << endl;
 	int value = 0;
 	cin >> value;
-	if (selectPosition < 0 || selectPosition >= list.Size())
+	if (selectPosition - 1 < 0 || selectPosition - 1 >= list.Size())
 	{
-		list.PushBack(value);
-		cout << "—v‘f" << value << "‚ª" << list.Size() - 1 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+		if (selectPosition - 1 < 0)
+		{
+			list.PushFront(value);
+			cout << "—v‘f" << value << "‚ª" << 0 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+		}
+		else
+		{
+			list.PushBack(value);
+			cout << "—v‘f" << value << "‚ª" << list.Size() - 1 << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
+		}
 	}
 	else
 	{
-		list.Add(value, list.GetNodeAddress(selectPosition));
+		list.Add(value, list.GetNodeAddress(selectPosition - 1));
 		cout << "—v‘f" << value << "‚ª" << selectPosition << "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½";
 	}
 	status = Menu;
@@ -163,7 +173,7 @@ void DeleteRun(MCB::List<T>& list, int& status)
 }
 int main()
 {
-	
+
 
 	MCB::List<int> list;
 	int status = Menu;
@@ -173,15 +183,15 @@ int main()
 	int select = 2;
 	int selectStatus;
 	int drawStatus = Menu;
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    {
-	    while (true)
-	    {
-			
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	{
+		while (true)
+		{
+
 			switch (status)
 			{
 			case Menu:
-				MenuRun(list,status);
+				MenuRun(list, status);
 				break;
 			case Draw:
 				DrawRun(list, status);
@@ -190,10 +200,10 @@ int main()
 				InsertRun(list, status);
 				break;
 			case Change:
-				ChangeRun(list,status);
+				ChangeRun(list, status);
 				break;
 			case Delete:
-				DeleteRun(list,status);
+				DeleteRun(list, status);
 				status = Menu;
 				break;
 			default:
@@ -204,9 +214,9 @@ int main()
 			{
 				break;
 			}
-	    }
-    }
-    _CrtDumpMemoryLeaks();
-    system("pause");
+		}
+	}
+	_CrtDumpMemoryLeaks();
+	system("pause");
 	return 0;
 }
