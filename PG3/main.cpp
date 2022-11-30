@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "List.h"
 using namespace std;
+
 enum Status {
 	Menu = 0,
 	Draw = 1,
@@ -173,7 +174,7 @@ void DeleteRun(MCB::List<T>& list, int& status)
 }
 int main()
 {
-
+	ios::sync_with_stdio(false);
 
 	MCB::List<int> list;
 	int status = Menu;
