@@ -5,15 +5,15 @@
 using namespace std;
 
 enum Status {
-	Menu = 0,
-	Draw = 1,
-	Insert = 2,
-	Change = 3,
-	Delete = 4,
+	Menu = 0,//メニュー画面
+	Draw = 1,//要素表示画面
+	Insert = 2,//要素挿入画面
+	Change = 3,//要素編集画面
+	Delete = 4,//要素削除画面
 };
 enum DrawStatus {
-	AllDraw = 1,
-	SelectDraw = 2
+	AllDraw = 1,//一覧表示
+	SelectDraw = 2//選択表示
 };
 template <class T>
 void MenuRun(MCB::List<T>& list, int& status)
@@ -54,7 +54,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 	cin.ignore(1024, '\n');
 	switch (drawStatus)
 	{
-	case AllDraw:
+	case AllDraw://一覧表示
 		cout << "[要素の一覧表示]" << endl;
 		cout << "要素一覧:{" << endl;
 		list.AllPrint();
@@ -85,7 +85,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 			break;
 		}
 		break;
-	case SelectDraw:
+	case SelectDraw://要素選択表示
 		cout << "[順番を指定して要素を表示]" << endl;
 
 		cin >> selectStatus;
@@ -235,12 +235,12 @@ void DeleteRun(MCB::List<T>& list, int& status)
 }
 int main()
 {
-	ios::sync_with_stdio(false);
+	ios::sync_with_stdio(false);//cinは速度面に難があるらしいので、改善用関数らしい
 
 	MCB::List<string> list;
 	int status = Menu;
 	bool breakFlag = false;
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);//メモリリーク監視用(newで生成してるので)
 	{
 		while (true)
 		{
@@ -248,19 +248,19 @@ int main()
 			switch (status)
 			{
 			case Menu:
-				MenuRun(list, status);
+				MenuRun(list, status);//初期画面(メニュー画面)
 				break;
 			case Draw:
-				DrawRun(list, status);
+				DrawRun(list, status);//要素表示画面
 				break;
 			case Insert:
-				InsertRun(list, status);
+				InsertRun(list, status);//挿入画面
 				break;
 			case Change:
-				ChangeRun(list, status);
+				ChangeRun(list, status);//要素編集画面
 				break;
 			case Delete:
-				DeleteRun(list, status);
+				DeleteRun(list, status);//要素削除画面
 				status = Menu;
 				break;
 			default:
@@ -274,6 +274,6 @@ int main()
 		}
 	}
 	_CrtDumpMemoryLeaks();
-	system("pause");
+	system("pause");//while(true)で回って入るけど念のため
 	return 0;
 }
