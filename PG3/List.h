@@ -140,8 +140,14 @@ namespace MCB
             int num = 0;
             while (ptr != dummy)
             {
-
-                cout << num << ":\"" << ptr->value << "\"" << endl;//テンプレートのフォーマット指定子がわからなかったので、ネットから拾ってきた方法で描画
+                if (num >= Size() - 1)
+                {
+                    cout << num << ":\"" << ptr->value << "\"" << endl;
+                }
+                else
+                {
+                    cout << num << ":\"" << ptr->value << "\"," << endl;
+                }
                 ptr = ptr->next;
                 num++;
             }
