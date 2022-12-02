@@ -93,6 +93,10 @@ void DrawRun(MCB::List<T>& list, int& status)
 		{
 			cin.clear();
 		}
+		if (selectStatus >= list.Size())
+		{
+			selectStatus = list.Size() - 1;
+		}
 		cout << selectStatus << ":" << list.GetNodeAddress(selectStatus)->value << endl;
 		cout << "-----------------------------------" << endl;
 		cout << "1.—v‘f‚Ì•\Ž¦‚É–ß‚é" << endl;
@@ -119,6 +123,7 @@ void DrawRun(MCB::List<T>& list, int& status)
 		}
 		break;
 	default:
+		status = Menu;
 		break;
 	}
 }
