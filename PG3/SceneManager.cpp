@@ -11,72 +11,61 @@ SceneManager* SceneManager::GetInstance()
 
 void SceneManager::Run()
 {
-	string deleteSelect;
+	Initialize();
 	while (true)
 	{
 		Update();
 		Draw();
-		cout << "I—¹‚ð‚·‚éê‡AnyƒL[‚ð‰Ÿ‚µ‚ÄEnter,‘±s‚·‚éê‡‰½‚à“ü—Í‚¹‚¸‚ÉEnter‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢" << endl;
-		getline(cin, deleteSelect);
-		cin.ignore(1024, '\n');
-		if (deleteSelect != "\0")
+		if (enemys.size() <= 0)
 		{
 			break;
 		}
 
+	}
+}
+
+void SceneManager::Initialize()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		unique_ptr<Enemy> temp = make_unique<Enemy>();
+		enemys.push_back(move(temp));
 	}
 }
 
 void SceneManager::Update()
 {
-	while (true)
+	int select = 0;
+	int attack = 0;
+	cout << "“G‘S–Å‚ÅI—¹" << endl;
+	cout << "‚P‚ð‰Ÿ‚µ‚ÄUŒ‚,2‚ð‰Ÿ‚µ‚Ä‘¦ŽE,3‚ð‚¨‚µ‚ÄŒ©“¦‚µ" << endl;
+	cin >> select;
+	if (select == 1 || select == 2)
 	{
-		string  sceneNum ;
-		cout << "‰½‚à“ü—Í‚¹‚¸Enter‚ð“ü—Í‚ÅŽŸ‚ÌƒV[ƒ“‚ÖˆÚ“®" << endl;
-		getline(cin, sceneNum);
-		if (cin.fail())
+		cout << "0 ` 9‚Ì”ÍˆÍ‚ÅUŒ‚‘ÎÛ‚ðŽw’è" << endl;
+		cin >> attack;
+		if (attack > 9 || attack < 0)
 		{
-			cin.clear();
-		}
-		cin.ignore(1024, '\n');
-		if (sceneNum == "\0")
-		{
-			int selectSceneNo = sceneNo;
-			selectSceneNo++;
-			if (selectSceneNo > (int)SceneNum::GameClear)
-			{
-				selectSceneNo = (int)SceneNum::Title;
-			}
-			ChengeScene(selectSceneNo);
-			break;
-		}
-		else
-		{
-			cout << "‰½‚à“ü—Í‚µ‚È‚¢‚Å‚­‚¾‚³‚¢" << endl;
-			continue;
+			attack = 0;
 		}
 	}
+
+	decltype(enemys)::iterator itr = enemys.begin();
+	for (int i = 0; i < attack; i++)
+	{
+		itr++;
+	}
+	itr->get()->Update(select);
+
+	enemys.remove_if([](unique_ptr<Enemy>& itr) {return !itr->live; });
+	cout << "“G‚ÌŽc‚è:" << enemys.size()<<"‘Ì" << endl;
 }
 
 void SceneManager::Draw()
 {
-	switch (sceneNo)
+	for (auto& itr : enemys)
 	{
-	case (int)SceneNum::Title:
-		cout << "nowScene:Title" << endl;
-		break;
-	case (int)SceneNum::NewGame:
-		cout << "nowScene:NewGame" << endl;
-		break;
-	case (int)SceneNum::GamePlay:
-		cout << "nowScene:GamePlay" << endl;
-		break;
-	case (int)SceneNum::GameClear:
-		cout << "nowScene:GameClear" << endl;
-		break;
-	default:
-		sceneNo = (int)SceneNum::Title;
-		break;
+		itr->Draw();
 	}
 }
 
