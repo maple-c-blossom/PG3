@@ -23,8 +23,7 @@ public:
 	SceneManager& operator= (const SceneManager& manager) = delete;
 	static SceneManager* GetInstance();
 	int sceneNo = (int)SceneNum::GameClear;
-	std::list<std::unique_ptr<Enemy>> enemys;
-
+	Enemy enemy;
 	void Run();
 };
 

@@ -1,10 +1,15 @@
 #pragma once
 class Enemy
 {
-	int hp = 3;
+	int num = 0; 
+	bool live = true;
 public:
-	static bool live;
-	void Update(int actionSelect);
+	void Proximity();
+	void Shot();
+	void Ecession();
+	static void(Enemy::* funcTable[])();
+	void Update();
 	void Draw();
+	bool GetLive() { return live; }
 };
 

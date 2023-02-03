@@ -1,23 +1,41 @@
 #include "Enemy.h"
 #include <iostream>
 using namespace std;
-bool Enemy::live = true;
 
-void Enemy::Update(int actionSelect)
+void(Enemy::* Enemy::funcTable[])() =
 {
-	switch (actionSelect)
+	&Enemy::Proximity,
+	&Enemy::Shot,
+	&Enemy::Ecession
+};
+void Enemy::Proximity()
+{
+	cout << "“G‚Ì‹ßÚI" << endl;
+}
+
+void Enemy::Shot()
+{
+	cout << "“G‚ÌŽËŒ‚!" << endl;
+}
+
+void Enemy::Ecession()
+{
+	cout << "“G‚Ì—£’E!" << endl;
+}
+
+void Enemy::Update()
+{
+	if (live)
 	{
-	case 1:
-		hp--;
-		break;
-	case 2:
-		hp = 0;
-		break;
-	default:
-		break;
+		(this->*funcTable[num])();
 	}
-	if (hp <= 0)
+	int select = 0;
+	cout << "1‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢" << endl;
+	cin >> select;
+	num++;
+	if (num >= 3)
 	{
+		num = 0;
 		live = false;
 	}
 }
@@ -26,5 +44,5 @@ void Enemy::Update(int actionSelect)
 
 void Enemy::Draw()
 {
-	cout << "hp‚ÍŽc‚è" << hp << "‚¾" << endl;
+
 }
