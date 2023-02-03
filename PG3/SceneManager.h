@@ -1,5 +1,7 @@
 #pragma once
-#include "Enemy.h"
+#include "Circle.h"
+#include "Rectangle.h"
+#include "IShape.h"
 #include <memory>
 #include <list>
 class SceneManager final
@@ -23,7 +25,8 @@ public:
 	SceneManager& operator= (const SceneManager& manager) = delete;
 	static SceneManager* GetInstance();
 	int sceneNo = (int)SceneNum::GameClear;
-	Enemy enemy;
+	std::unique_ptr<IShape> shapeC;
+	std::unique_ptr<IShape> shapeR;
 	void Run();
 };
 

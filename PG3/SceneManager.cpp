@@ -12,32 +12,28 @@ SceneManager* SceneManager::GetInstance()
 void SceneManager::Run()
 {
 	Initialize();
-	while (true)
-	{
-		Update();
-		Draw();
-		if (!enemy.GetLive())
-		{
-			break;
-		}
-
-	}
+	Update();
+	Draw();
 }
 
 void SceneManager::Initialize()
 {
+	shapeC = make_unique<Circle>();
+	shapeR = make_unique<Rectangle>();
 
 }
 
 void SceneManager::Update()
 {
-	enemy.Update();
+	shapeC->size();
+	shapeR->size();
 }
 
 void SceneManager::Draw()
 {
-	enemy.Draw();
 
+	shapeC->draw();
+	shapeR->draw();
 }
 
 void SceneManager::ChengeScene(int sceneNo)
