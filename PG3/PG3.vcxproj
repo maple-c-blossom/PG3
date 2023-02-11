@@ -139,19 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Circle.cpp" />
-    <ClCompile Include="IShape.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="PIC.cpp" />
+    <ClCompile Include="PICManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Circle.h" />
-    <ClInclude Include="IShape.h" />
     <ClInclude Include="List.h" />
-    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="PIC.h" />
+    <ClInclude Include="PICManager.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="UtilStruct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

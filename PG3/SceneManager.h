@@ -1,7 +1,6 @@
 #pragma once
-#include "Circle.h"
-#include "Rectangle.h"
-#include "IShape.h"
+#include "PICManager.h"
+#include "TaskManager.h"
 #include <memory>
 #include <list>
 class SceneManager final
@@ -13,6 +12,8 @@ private:
 	void Update();
 	void Draw();
 	void ChengeScene(int sceneNo);
+	PICManager* picManager = PICManager::GetInstance();
+	TaskManager* taskManager = TaskManager::GetInstance();
 public:
 	enum class SceneNum
 	{
@@ -25,8 +26,7 @@ public:
 	SceneManager& operator= (const SceneManager& manager) = delete;
 	static SceneManager* GetInstance();
 	int sceneNo = (int)SceneNum::GameClear;
-	std::unique_ptr<IShape> shapeC;
-	std::unique_ptr<IShape> shapeR;
+
 	void Run();
 };
 
