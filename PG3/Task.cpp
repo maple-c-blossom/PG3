@@ -1,6 +1,6 @@
 #include "Task.h"
 
-Task::Task(unsigned int _id, PIC* _pic, std::string _name, std::string _content, std::string _priority, Date _deadline, std::string _status)
+Task::Task(unsigned int _id, Person* _pic, std::string _name, std::string _content, std::string _priority, Date _deadline, bool _status)
 {
 	id = _id;
 	pic = _pic;
@@ -36,17 +36,22 @@ Date Task::GetDeadLine()
 	return deadline;
 }
 
-std::string Task::GetStatus()
+bool Task::GetStatus()
 {
 	return status;
 }
 
-void Task::SetPic(PIC* _pic)
+Person* Task::GetPic()
+{
+	return pic;
+}
+
+void Task::SetPic(Person* _pic)
 {
 	pic = _pic;
 }
 
-void Task::SetStatus(std::string _status)
+void Task::SetStatus(bool _status)
 {
 	status = _status;
 }
@@ -59,4 +64,9 @@ void Task::SetPriority(std::string _priority)
 void Task::SetContent(std::string _content)
 {
 	content = _content;
+}
+
+void Task::SetDeadLine(Date _deadline)
+{
+	deadline = _deadline;
 }

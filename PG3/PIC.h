@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
-class PIC
+class Person
 {
 private:
     unsigned int id;
     std::string name;
     std::string className;
 public:
-    PIC(unsigned int _id,std::string _name, std::string _className);
+    Person(unsigned int _id,std::string _name, std::string _className);
     unsigned int GetId();
     std::string GetName();
     std::string GetClass();

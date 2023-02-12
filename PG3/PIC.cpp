@@ -1,33 +1,33 @@
 #include "PIC.h"
 
-PIC::PIC(unsigned int _id, std::string _name, std::string _className)
+Person::Person(unsigned int _id, std::string _name, std::string _className)
 {
 	id = _id;
 	name = _name;
 	className = _className;
 }
 
-unsigned int PIC::GetId()
+unsigned int Person::GetId()
 {
 	return id;
 }
 
-std::string PIC::GetName()
+std::string Person::GetName()
 {
 	return name;
 }
 
-std::string PIC::GetClass()
+std::string Person::GetClass()
 {
 	return className;
 }
 
-void PIC::SetName(std::string _name)
+void Person::SetName(std::string _name)
 {
 	name = _name;
 }
 
-void PIC::SetClass(std::string _class)
+void Person::SetClass(std::string _class)
 {
 	className = _class;
 }

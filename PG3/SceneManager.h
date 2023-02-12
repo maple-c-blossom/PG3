@@ -3,17 +3,19 @@
 #include "TaskManager.h"
 #include <memory>
 #include <list>
-class SceneManager final
+class App final
 {
 private:
-	SceneManager() {};
-	~SceneManager() {};
+	App() {};
+	~App() {};
 	void Initialize();
 	void Update();
 	void Draw();
+	void End();
 	void ChengeScene(int sceneNo);
-	PICManager* picManager = PICManager::GetInstance();
+	PersonManager* picManager = PersonManager::GetInstance();
 	TaskManager* taskManager = TaskManager::GetInstance();
+
 public:
 	enum class SceneNum
 	{
@@ -22,9 +24,9 @@ public:
 		GamePlay,
 		GameClear
 	};
-	SceneManager(const SceneManager& manager) = delete;
-	SceneManager& operator= (const SceneManager& manager) = delete;
-	static SceneManager* GetInstance();
+	App(const App& manager) = delete;
+	App& operator= (const App& manager) = delete;
+	static App* GetInstance();
 	int sceneNo = (int)SceneNum::GameClear;
 
 	void Run();
