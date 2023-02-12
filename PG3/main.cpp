@@ -1,4 +1,4 @@
-#include "SceneManager.h"
+#include "App.h"
 int main()
 {
 	App::GetInstance()->Run();

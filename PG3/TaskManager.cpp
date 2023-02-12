@@ -29,8 +29,8 @@ Task* TaskManager::GetTask(unsigned int id)
 
 unsigned int TaskManager::AddTask(unsigned int picId, std::string name, std::string content, std::string priority, Date deadline,bool status)
 {
-
-    for (unsigned int id = 0; id < tasks.size(); id++)
+    int id = 1;
+    for (unsigned int i = 0; i < tasks.size(); i++)
     {
         bool success = true;//id‚ª”í‚Á‚Ä–³‚¯‚ê‚ÎtrueA”í‚Á‚½‚çfalse
         id++;
@@ -52,7 +52,7 @@ unsigned int TaskManager::AddTask(unsigned int picId, std::string name, std::str
     }
     if (tasks.size() == 0)
     {
-        int id = 0;
+        int id = 1;
         unique_ptr<Task> temp = make_unique<Task>(id, picManager->GetPicPtr(picId), name, content, priority, deadline, status);
         tasks.push_back(move(temp));
         return id;

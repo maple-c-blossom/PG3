@@ -89,7 +89,8 @@ Person* PersonManager::GetPicPtr(unsigned int id)
 
 unsigned int PersonManager::AddPIC(std::string name, std::string className)
 {
-    for (unsigned int id = 0 ; id < pics.size(); id++)
+    int id = 1;
+    for (unsigned int i = 0 ; i < pics.size(); i++)
     {
         bool success = true;//id‚ª”í‚Á‚Ä–³‚¯‚ê‚ÎtrueA”í‚Á‚½‚çfalse
         id++;
@@ -111,7 +112,7 @@ unsigned int PersonManager::AddPIC(std::string name, std::string className)
     }
     if (pics.size() == 0)
     {
-        int id = 0;
+        int id = 1;
         unique_ptr<Person> temp = make_unique<Person>(id, name, className);
         pics.push_back(move(temp));
         return id;

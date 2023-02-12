@@ -1,4 +1,4 @@
-#include "SceneManager.h"
+#include "App.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -20,6 +20,7 @@ void App::Run()
 		Draw();
 		cout << "続行なら1を終了なら0を入力してください" << endl;
 		cin >> returnFlag;
+		std::system("cls");
 		if (!returnFlag)
 		{
 			End();
@@ -41,7 +42,7 @@ void App::Update()
 	cin >> select;
 	if (select == 1)
 	{
-		cout << "数字で選択してください" << "\n" << "1:担当者追加" << "\n" << "2:名前変更" << "\n" << "3:クラス変更" << "\n" << "4:担当者削除" << endl;
+		cout << "数字で選択してください" << "\n" << "1:担当者追加" << "\n" << "2:名前変更" << "\n" << "3:クラス変更" << "\n" << "4:担当者削除"  << "\n" << "5:担当者参照" << endl;
 		cin >> select;
 		if (select == 1)
 		{
@@ -122,6 +123,25 @@ void App::Update()
 			picManager->DeletePic(id);
 			cout << "削除しました。" << endl;
 		}
+		else if (select == 5)
+		{
+			int id = -1;
+			cout << "idを選択してください" << endl;
+			picManager->PrintAllId();
+			cin >> id;
+			if (cin.fail())
+			{
+				cin.clear();
+			}
+			cin.ignore(1024, '\n');
+			Person* ptr = picManager->GetPicPtr(id);
+			if (ptr)
+			{
+				cout << "ID: " << ptr->GetId() << endl;
+				cout << "担当者名: " << ptr->GetName() << endl;
+				cout << "担当クラス名: " << ptr->GetClass() << endl;
+			}
+		}
 		else
 		{
 			cout << "不正な値です" << endl;
@@ -130,7 +150,7 @@ void App::Update()
 	}
 	else if (select == 2)
 	{
-		cout << "数字で選択してください" << "\n" << "1:タスク追加" << "\n" << "2:ステータス変更" << "\n" << "3:内容変更" << "\n" << "4:優先度変更" << "\n" << "5:担当者変更" << "\n" << "6:期限変更" << "\n" << "7:タスク削除" << endl;
+		cout << "数字で選択してください" << "\n" << "1:タスク追加" << "\n" << "2:ステータス変更" << "\n" << "3:内容変更" << "\n" << "4:優先度変更" << "\n" << "5:担当者変更" << "\n" << "6:期限変更" << "\n" << "7:タスク削除" << "\n" << "8:タスク表示" << endl;
 		cin >> select;
 		if (select == 1)
 		{
@@ -206,7 +226,7 @@ void App::Update()
 				cin.clear();
 			}
 			cin.ignore(1024, '\n');
-			cout << "ステータス状況を選択してください。1:完了,2:未完了" << endl;
+			cout << "ステータス状況を選択してください。0:未完了,1:完了" << endl;
 			cin >> status;
 			if (cin.fail())
 			{
@@ -327,6 +347,31 @@ void App::Update()
 			cin.ignore(1024, '\n');
 			taskManager->DeleteTask(id);
 			cout << "削除しました。" << endl;
+		}
+		else if (select == 8)
+		{
+			int id = -1;
+
+			cout << "idを選択してください" << endl;
+			taskManager->PrintAllId();
+			cin >> id;
+			if (cin.fail())
+			{
+				cin.clear();
+			}
+			cin.ignore(1024, '\n');
+			Task* ptr = taskManager->GetTask(id);
+			if (ptr)
+			{
+				cout << "ID:" << " " << ptr->GetId() << endl;
+				cout << "タスク名:" << " " << ptr->GetName() << endl;
+				cout << "内容:" << " " << ptr->GetContent() << endl;
+				cout << "優先度:" << " " << ptr->GetPriority() << endl;
+				string status = ptr->GetStatus() ? "完了" : "未完了";
+				cout << "進捗:" << " " << status << endl;
+				cout << "担当者ID:" << " " << ptr->GetPic()->GetId() << endl;
+				cout << "期限:" << " " << ptr->GetDeadLine().month << "月 " << ptr->GetDeadLine().day<< "日" << endl;
+			}
 		}
 		else
 		{
