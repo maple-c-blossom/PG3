@@ -24,7 +24,7 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="PIC.cpp">
+    <ClCompile Include="Person.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Task.cpp">
@@ -33,7 +33,7 @@
     <ClCompile Include="TaskManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="PICManager.cpp">
+    <ClCompile Include="PersonManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="UtilStruct.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PIC.h">
+    <ClInclude Include="Person.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Task.h">
@@ -56,7 +56,7 @@
     <ClInclude Include="TaskManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PICManager.h">
+    <ClInclude Include="PersonManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

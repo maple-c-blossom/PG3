@@ -1,4 +1,4 @@
-#include "PIC.h"
+#include "Person.h"
 
 Person::Person(unsigned int _id, std::string _name, std::string _className)
 {

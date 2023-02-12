@@ -1,5 +1,5 @@
 #pragma once
-#include "PIC.h"
+#include "Person.h"
 #include <list>
 #include <memory>
 class PersonManager

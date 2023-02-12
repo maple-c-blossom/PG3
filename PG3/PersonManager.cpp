@@ -1,4 +1,4 @@
-#include "PICManager.h"
+#include "PersonManager.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -19,7 +19,7 @@ void PersonManager::PrintAllId()
 void PersonManager::OutPut()
 {
     ofstream file;
-    file.open("pic.txt", std::ios::out);
+    file.open("Data\\pic.txt", std::ios::out);
     if (file.fail())
     {
         return;
@@ -29,8 +29,10 @@ void PersonManager::OutPut()
         file << "ID" << " " << itr->GetId() << endl;
         file << "Name" << " " << itr->GetName() << endl;
         file << "ClassName" << " " << itr->GetClass() << endl;
-        file << "End" << " " << "End" << endl;
+        file << "End" << " " << endl;
+        file << endl;
     }
+    file << "EOF" << endl;
     file.close();
 }
 void PersonManager::InPut()
@@ -40,7 +42,7 @@ void PersonManager::InPut()
     std::string name;
     std::string className;
     ifstream file;
-    file.open("task.txt", std::ios::in);
+    file.open("Data\\pic.txt", std::ios::in);
     if (file.fail())
     {
         return;

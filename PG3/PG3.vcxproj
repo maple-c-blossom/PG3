@@ -141,16 +141,16 @@
   <ItemGroup>
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PIC.cpp" />
-    <ClCompile Include="PICManager.cpp" />
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="PersonManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h" />
-    <ClInclude Include="PIC.h" />
-    <ClInclude Include="PICManager.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="PersonManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskManager.h" />

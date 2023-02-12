@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "PIC.h"
+#include "Person.h"
 #include "UtilStruct.h"
 class Task
 {

@@ -149,7 +149,7 @@ void TaskManager::SetDate(unsigned int id, Date deadline)
 void TaskManager::OutPut()
 {
     ofstream file;
-    file.open("task.txt", std::ios::out);
+    file.open("Data\\task.txt", std::ios::out);
     if (file.fail())
     {
         return;
@@ -164,8 +164,10 @@ void TaskManager::OutPut()
         file << "PicID" << " " << itr->GetPic()->GetId() << endl;
         file << "DeadLineMonth" << " " << itr->GetDeadLine().month << endl;
         file << "DeadLineDay" << " " << itr->GetDeadLine().day << endl;
-        file << "End" << " " << "End" << endl;
+        file << "End" << " " << endl;
+        file << endl;
     }
+    file << "EOF" << endl;
     file.close();
 }
 
@@ -179,7 +181,7 @@ void TaskManager::InPut()
     Date deadline;
     bool status;
     ifstream file;
-    file.open("task.txt", std::ios::in);
+    file.open("Data\\task.txt", std::ios::in);
     if (file.fail())
     {
         return;
@@ -227,5 +229,6 @@ void TaskManager::InPut()
             AddTask(id,pic, name, content, priority, deadline, status);
         }
     }
+
     file.close();
 }
