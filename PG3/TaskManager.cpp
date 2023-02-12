@@ -161,7 +161,14 @@ void TaskManager::OutPut()
         file << "Content" << " " << itr->GetContent() << endl;
         file << "Priority" << " " << itr->GetPriority() << endl;
         file << "Status" << " " << itr->GetStatus() << endl;
-        file << "PicID" << " " << itr->GetPic()->GetId() << endl;
+        if (itr->GetPic())
+        {
+            file << "PicID" << " " << itr->GetPic()->GetId() << endl;
+        }
+        else
+        {
+            file << "PicID" << " " << -1 << endl;
+        }
         file << "DeadLineMonth" << " " << itr->GetDeadLine().month << endl;
         file << "DeadLineDay" << " " << itr->GetDeadLine().day << endl;
         file << "End" << " " << endl;

@@ -13,31 +13,37 @@ Task::Task(unsigned int _id, Person* _pic, std::string _name, std::string _conte
 
 unsigned int Task::GetId()
 {
+	if (this == nullptr) return -1;
 	return id;
 }
 
 std::string Task::GetName()
 {
+	if (this == nullptr) return  "NULL";
 	return name;
 }
 
 std::string Task::GetContent()
 {
+	if (this == nullptr) return  "NULL";
 	return content;
 }
 
 std::string Task::GetPriority()
 {
+	if (this == nullptr) return "NULL";
 	return priority;
 }
 
 Date Task::GetDeadLine()
 {
+	if (this == nullptr) return Date();
 	return deadline;
 }
 
 bool Task::GetStatus()
 {
+	if (this == nullptr) return false;
 	return status;
 }
 

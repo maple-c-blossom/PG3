@@ -369,7 +369,10 @@ void App::Update()
 				cout << "—Dæ“x:" << " " << ptr->GetPriority() << endl;
 				string status = ptr->GetStatus() ? "Š®—¹" : "–¢Š®—¹";
 				cout << "i’»:" << " " << status << endl;
-				cout << "’S“–ŽÒID:" << " " << ptr->GetPic()->GetId() << endl;
+				if (ptr->GetPic())
+				{
+					cout << "’S“–ŽÒID:" << " " << ptr->GetPic()->GetId() << endl;
+				}
 				cout << "ŠúŒÀ:" << " " << ptr->GetDeadLine().month << "ŒŽ " << ptr->GetDeadLine().day<< "“ú" << endl;
 			}
 		}
