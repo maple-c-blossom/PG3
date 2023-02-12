@@ -196,7 +196,7 @@ void App::Update()
 				cin.clear();
 			}
 			cin.ignore(1024, '\n');
-			cout << "ステータス状況を選択してください。1:完了,2:未完了" << endl;
+			cout << "ステータス状況を選択してください。0:未完了,1:完了" << endl;
 			cin >> status;
 			if (cin.fail())
 			{
